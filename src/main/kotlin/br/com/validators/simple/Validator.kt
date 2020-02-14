@@ -130,6 +130,13 @@ open class Validator {
         block(exibir.toString())
     }
 
+    fun execWhenNoMsgs(block: () -> Unit) {
+        verify()
+        if(!hasError && !hasInfo && !hasWarn){
+            block()
+        }
+    }
+
     init {
         messages = ArrayList()
     }
