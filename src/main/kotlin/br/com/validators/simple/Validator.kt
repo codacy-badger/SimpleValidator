@@ -100,84 +100,35 @@ open class Validator {
         return check(!expression!!, message)
     }
 
-    fun showErrors(block: (erros: List<String>) -> Unit) {
-        block(errors)
+    fun showErrors(block: (erros: String) -> Unit) {
+        val exibir = StringBuilder()
+        for (msg in errors) {
+            exibir
+                .append(msg)
+                .append("\n")
+        }
+        block(exibir.toString())
     }
 
-    fun showInformations(block: (informations: List<String>) -> Unit) {
-        block(informations)
+    fun showInformations(block: (informations: String) -> Unit) {
+        val exibir = StringBuilder()
+        for (msg in informations) {
+            exibir
+                .append(msg)
+                .append("\n")
+        }
+        block(exibir.toString())
     }
 
-    fun showWarnings(block: (warnings: List<String>) -> Unit) {
-        block(warnings)
+    fun showWarnings(block: (warnings: String) -> Unit) {
+        val exibir = StringBuilder()
+        for (msg in warnings) {
+            exibir
+                .append(msg)
+                .append("\n")
+        }
+        block(exibir.toString())
     }
-
-//    private fun showAlert(message: String, type: Alert.AlertType) {
-//        val alert = Alert(type)
-//        alert.title = "SysDeliz"
-//        alert.headerText = null
-//        alert.contentText = message
-//        alert.dialogPane.style =
-//            " -fx-max-width:" + width + "px; -fx-max-height: " + height + "px; -fx-pref-width: " + width + "px; -fx-pref-height: " + height + "px;"
-//        alert.showAndWait()
-//    }
-//
-//    // TODO REMOVER?
-//    fun showAlertErrors() {
-//        defHeightAndWidth()
-//        val exibir = StringBuilder()
-//        var count = 0
-//
-//        for (msg in errors) {
-//            exibir
-//                .append(msg)
-//                .append("\n")
-//            count++
-//        }
-//
-//        if (count > 1) {
-//            height += 5 * count
-//            width += 10 * count
-//        }
-//        showAlert(exibir.toString(), AlertType.ERROR)
-//    }
-//
-//    fun showAlertWarn() {
-//        defHeightAndWidth()
-//
-//        val exibir = StringBuilder()
-//        var count = 0
-//        for (msg in warnings) {
-//            exibir.append(msg).append("\n")
-//            count++
-//        }
-//        if (count > 1) {
-//            height += 5 * count
-//            width += 10 * count
-//        }
-//        showAlert(exibir.toString(), AlertType.WARNING)
-//    }
-//
-//    fun showAlertInfo() {
-//        defHeightAndWidth()
-//
-//        val exibir = StringBuilder()
-//        var count = 0
-//        for (msg in informations) {
-//            exibir.append(msg).append("\n")
-//            count++
-//        }
-//        if (count > 1) {
-//            height += 5 * count
-//            width += 10 * count
-//        }
-//        showAlert(exibir.toString(), AlertType.INFORMATION)
-//    }
-//
-//    private fun defHeightAndWidth(){
-//        height = 200
-//        width = 400
-//    }
 
     init {
         messages = ArrayList()
