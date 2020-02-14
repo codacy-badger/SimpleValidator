@@ -4,11 +4,14 @@ import br.com.validators.simple.enums.Severity
 import java.util.*
 
 class SimpleMessage(
-    private val category: String,
+    override val category: String,
     override val message: String,
     override val severity: Severity,
     vararg messageParameters: String
 ): Message {
+
+    // Cria um erro
+    constructor(message: String, messageParameters: String):this("Erro", message, Severity.ERROR, messageParameters){}
 
     // Usado quando a message possuir marcações como %s
     private val messageParameters: Array<String>?
@@ -63,4 +66,20 @@ class SimpleMessage(
     init {
         this.messageParameters = arrayOf(*messageParameters)
     }
+
+    companion object {
+        fun error(message: String, vararg messageParameters: String): SimpleMessage {
+            return SimpleMessage("Erro", message, Severity.ERROR, *messageParameters)
+        }
+
+        fun info(message: String, vararg messageParameters: String): SimpleMessage {
+            return SimpleMessage("Info", message, Severity.INFO, *messageParameters)
+        }
+
+        fun warn(message: String, vararg messageParameters: String): SimpleMessage {
+            return SimpleMessage("Warn", message, Severity.WARN, *messageParameters)
+        }
+    }
+
 }
+
