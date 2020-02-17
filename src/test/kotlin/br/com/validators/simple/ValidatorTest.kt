@@ -2,6 +2,7 @@ package br.com.validators.simple
 
 import br.com.validators.simple.enums.Severity
 import br.com.validators.simple.message.SimpleMessage
+import br.com.validators.simple.validator.Validator
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*

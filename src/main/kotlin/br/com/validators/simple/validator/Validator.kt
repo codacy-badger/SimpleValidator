@@ -1,9 +1,7 @@
-package br.com.validators.simple
+package br.com.validators.simple.validator
 
 import br.com.validators.simple.enums.Severity
 import br.com.validators.simple.message.Message
-import javafx.scene.control.Alert
-import java.util.*
 import java.util.function.Consumer
 import kotlin.collections.ArrayList
 
@@ -14,9 +12,6 @@ open class Validator {
     private var hasError = false
     private var hasInfo = false
     private var hasWarn = false
-
-    private var height = 150
-    private var width = 300
 
     private fun check(expresison: Boolean, message: Message): Validator {
         if (expresison) {
@@ -45,17 +40,17 @@ open class Validator {
         })
     }
 
-    val errors: List<String>
+    private val errors: List<String>
         get() {
             return getBySeverity(Severity.ERROR)
         }
 
-    val informations: List<String>
+    private val informations: List<String>
         get() {
             return getBySeverity(Severity.INFO)
         }
 
-    val warnings: List<String>
+    private val warnings: List<String>
         get() {
             return getBySeverity(Severity.WARN)
         }
@@ -100,29 +95,29 @@ open class Validator {
         return check(!expression!!, message)
     }
 
+    @Deprecated(message="Usar o metodo execWhen")
     fun showErrors(block: (erros: String) -> Unit) {
-        val exibir = StringBuilder()
-        for (msg in errors) {
-            exibir
-                .append(msg)
-                .append("\n")
-        }
-        block(exibir.toString())
+        execWhen(Severity.ERROR, block)
     }
 
+    @Deprecated(message="Usar o metodo execWhen")
     fun showInformations(block: (informations: String) -> Unit) {
-        val exibir = StringBuilder()
-        for (msg in informations) {
-            exibir
-                .append(msg)
-                .append("\n")
-        }
-        block(exibir.toString())
+        execWhen(Severity.INFO, block)
     }
 
+    @Deprecated(message="Usar o metodo execWhen")
     fun showWarnings(block: (warnings: String) -> Unit) {
+        execWhen(Severity.WARN, block)
+    }
+
+    fun execWhen(severity: Severity, block:(messages: String) -> Unit) {
         val exibir = StringBuilder()
-        for (msg in warnings) {
+        val lista = when(severity){
+            Severity.ERROR -> errors
+            Severity.WARN -> warnings
+            Severity.INFO -> informations
+        }
+        for (msg in lista) {
             exibir
                 .append(msg)
                 .append("\n")

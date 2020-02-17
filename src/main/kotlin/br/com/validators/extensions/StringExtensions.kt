@@ -1,5 +1,6 @@
 package br.com.validators.extensions
 
+import br.com.validators.simple.enums.IPVersion
 import br.com.validators.simple.utils.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -227,7 +228,9 @@ fun String.isURL(): Boolean {
 }
 
 fun String.isIP(): Boolean {
-    return this.isIP(IPVersion.ipv4) || this.isIP(IPVersion.ipv6)
+    return this.isIP(
+        IPVersion.ipv4) || this.isIP(
+        IPVersion.ipv6)
 }
 
 fun String.isIP(version: IPVersion): Boolean {

@@ -1,6 +1,5 @@
-package br.com.validators.simple.custom
+package br.com.validators.simple.validator
 
-import br.com.validators.simple.Validator
 import br.com.validators.simple.message.Message
 import br.com.validators.extensions.isEmail
 
