@@ -110,7 +110,7 @@ open class Validator {
         execWhen(Severity.WARN, block)
     }
 
-    fun execWhen(severity: Severity, block:(messages: String) -> Unit) {
+    fun execWhen(severity: Severity, block:(messages: String) -> Unit): Validator {
         val exibir = StringBuilder()
         val lista = when(severity){
             Severity.ERROR -> errors
@@ -123,6 +123,7 @@ open class Validator {
                 .append("\n")
         }
         block(exibir.toString())
+        return this
     }
 
     fun execWhenNoMsgs(block: () -> Unit): Validator {
