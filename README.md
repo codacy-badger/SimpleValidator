@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/70a748aefe074da08b59ed54d6d220e6)](https://www.codacy.com/manual/devel.neto/SimpleValidator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jfneto/SimpleValidator&amp;utm_campaign=Badge_Grade)
+
 # SimpleValidator
 Validador baseado no vraptor para uso em validações fluentes.
 
